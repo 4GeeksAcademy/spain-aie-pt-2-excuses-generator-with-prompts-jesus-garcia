@@ -10,8 +10,15 @@ function generateExcuse() {
   return `${random(who)} ${random(action)} ${random(what)} ${random(when)}.`;
 }
 
-if (require.main === module) {
-  console.log(generateExcuse());
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.getElementById("generate-btn");
+  const excuseText = document.getElementById("excuse-text");
 
-module.exports = { generateExcuse };
+  if (!button || !excuseText) return;
+
+  const renderExcuse = () => {
+    excuseText.textContent = generateExcuse();
+  };
+
+  button.addEventListener("click", renderExcuse);
+});
